@@ -13,3 +13,5 @@ It starts with a rock ball in front of you.  Select it to grab it.  When it touc
 - "gravity on" turns on gravity.  Make sure you have looked around the room otherwise the blocks may fall through the floor.
 - "gravity off" turns off gravity.  
 - "fetch the ball" will re-select the ball in case you lost it
+
+![CubeSmash in action](https://github.com/Seekatar/CubeSmash/raw/master/doc/images/cube1.jpg)
