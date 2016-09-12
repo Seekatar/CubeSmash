@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using HoloToolkit.Unity;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 
@@ -24,6 +25,10 @@ public class SpeechManager : MonoBehaviour
         audioSource.loop = false;
         audioSource.clip = Resources.Load<AudioClip>("Explosion");
 
+        var p = FindObjectsOfType<GameObject>().SingleOrDefault(o => o.name == "Plane");
+        if ( p != null )
+            p.SetActive(false);
+
         _hammer = FindObjectsOfType<GameObject>().Where(o => o.name == "Hammer").FirstOrDefault();
         _rock = Resources.Load<Material>("wall09");
         _water = Resources.Load<Material>("water");
@@ -38,7 +43,7 @@ public class SpeechManager : MonoBehaviour
         {
             if (Physics.gravity.y < -9)
                 Physics.gravity = new Vector3(0, +9.81f, 0);
-            this.Invoke("gravityOff", .5f);
+            this.Invoke("gravityOff1", .4f);
 
         });
         keywords.Add("rock on", () =>
@@ -74,7 +79,24 @@ public class SpeechManager : MonoBehaviour
         {
             _hammer.SendMessage("OnSelect");
         });
-
+        keywords.Add("mesh on", () =>
+        {
+            SpatialMappingManager.Instance.DrawVisualMeshes = true;
+        });
+        keywords.Add("mesh off", () =>
+        {
+            SpatialMappingManager.Instance.DrawVisualMeshes = false;
+        });
+        keywords.Add("plane on", () =>
+        {
+            if ( p != null ) 
+                p.SetActive(true);
+        });
+        keywords.Add("plane off", () =>
+        {
+            if (p != null)
+                p.SetActive(false);
+        });
 
         // Tell the KeywordRecognizer about our keywords.
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
@@ -84,7 +106,13 @@ public class SpeechManager : MonoBehaviour
         keywordRecognizer.Start();
     }
 
-    public void gravityOff()
+    public void gravityOff1()
+    {
+        Physics.gravity = new Vector3(0, -9.81f, 0);
+        this.Invoke("gravityOff2",.3f);
+    }
+
+    public void gravityOff2()
     {
         Physics.gravity = new Vector3(0, 0, 0);
         foreach (var go in FindObjectsOfType<GameObject>())

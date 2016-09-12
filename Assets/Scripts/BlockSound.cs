@@ -27,7 +27,6 @@ public class BlockSound : MonoBehaviour
 	{
 		if (gameObject.GetComponent<Rigidbody>() != null && collision.gameObject.GetComponent<Rigidbody>() != null )
 		{
-            var beforeVolume = audioSource.volume;
             if (collision.relativeVelocity.magnitude > .5)
             {
                 var source = rnd.Next(1, 4);
