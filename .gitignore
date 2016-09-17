@@ -9,7 +9,8 @@ UWP/
 App/
 sysinfo.txt
 *.stackdump
- 
+
+.vscode/ 
 bin/
 *.dll
 *.pdb
