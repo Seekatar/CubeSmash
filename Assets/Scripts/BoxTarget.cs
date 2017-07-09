@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BoxTarget : MonoBehaviour
 {
@@ -15,7 +14,6 @@ public class BoxTarget : MonoBehaviour
 		audioSource.dopplerLevel = 1.0f;
 		audioSource.loop = false;
 		audioSource.clip = Resources.Load<AudioClip>("blockbreak");
-
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -25,6 +23,5 @@ public class BoxTarget : MonoBehaviour
 		if(detonator != null)
 			detonator.Explode();
 		Destroy(collision.gameObject);
-
 	}
 }

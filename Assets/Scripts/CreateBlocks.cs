@@ -18,8 +18,11 @@ public class CreateBlocks : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        for (int i = 1; i <= 10; i++)
-            _materials.Add(Resources.Load<Material>(string.Format("wall{0:00}", i)));
+        // for (int i = 1; i <= 10; i++)
+        //     _materials.Add(Resources.Load<Material>(string.Format("wall{0:00}", i)));
+        _materials.Add( Resources.Load<Material>("wall09") );
+        _materials.Add( Resources.Load<Material>("water") );
+        _materials.Add( Resources.Load<Material>("lava") );
 
         for ( int i = 1; i < 2; i++ )
             _objects.Add(Resources.Load<GameObject>(string.Format("Shape{0}", i)));

@@ -15,8 +15,8 @@ public class TransferMaterial : MonoBehaviour
 	// Update is called once per frame
 	void OnCollisionEnter(Collision collision)
 	{
-        var collidedRenderer = collision.collider.gameObject.GetComponent<Renderer>();
-        if (collidedRenderer.material != _renderer.material )
+        var collidedRenderer = collision.gameObject.GetComponent<Renderer>();
+        if (collidedRenderer.material != _renderer.material && collision.gameObject.name.EndsWith("(Clone)"))
         {
             collidedRenderer.material = _renderer.material;
         }
